@@ -69,6 +69,7 @@ void addCity(char time[30], char city[30], char country[30], int temp, int feels
     if (index == -1)
     {
         cities[end] = newCity;
+        end++;
     }
     // otherwise free the memory of the old city in the array, and update it
     else
@@ -76,7 +77,6 @@ void addCity(char time[30], char city[30], char country[30], int temp, int feels
         free(cities[index]);
         cities[index] = newCity;
     }
-    end++;
 }
 
 // returns the index value of the city in the array, returns -1 if not found
