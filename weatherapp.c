@@ -2,20 +2,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#define MAX 100
+#include "api.h"
 
-// stores weather data for current time and place
-struct WeatherData {
-    char time[30];              
-    char city[30];
-    char country[30];
-    int temp;
-    int feelsTemp;
-    int minTemp;
-    int maxTemp;
-    int wind;
-    int percipitation;
-};
+#define MAX 100
 
 struct WeatherData* cities[MAX]; // array that stores 100 cities' weather data
 int end = 0; // stores the index value for the first unused element in the array
@@ -26,25 +15,11 @@ int getCityIndex(char city[30]);
 
 int main()
 {
-    // some test code to make sure it was working
-    char time[30]= "test";
-    char city[30]= "test";
-    char city2[30] = "test2";
-    char city3[30] = "test3";
-    char country[30] = "test";
-    int temp = 0;
-    int feelsTemp = 0;
-    int minTemp = 0;
-    int maxTemp = 0;
-    int wind = 0;
-    int percipitation = 0;
-    addCity(time, city, country, temp, feelsTemp,minTemp,maxTemp,wind,percipitation);
-    addCity(time, city2, country, temp, feelsTemp,minTemp,maxTemp,wind,percipitation);
-    addCity(time, city3, country, temp, feelsTemp,minTemp,maxTemp,wind,percipitation);
-    for (int i = 0; i < end; i++)
-    {
-        printf("City: %s Temperature: %d \n" , cities[i]->city, cities[i]->temp);
-    }
+    wthr *test = (wthr *) malloc(sizeof(wthr));
+    initialize(test, "New York");
+    update(test);
+    printwthr(test);
+
     return (0);
 }
 
@@ -95,3 +70,4 @@ int getCityIndex(char city[30])
     // not found then return -1
     return -1;
 }
+
